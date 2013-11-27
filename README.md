@@ -1,0 +1,150 @@
+Ghetto Hidden:
+	-	What is Ghetto Hidden?:
+		Ghetto Hidden is a modified Trouble in Terrorist Town gamemode that is based off the idea of Hidden: Source.
+		As of right now it's a work in progress project, and there's currently only me working on it. And before you ask, no, I do not need any help coding this. I'm using this as training to learn more lua.
+		I had the same project earlier, but I dropped it and restarted due to certain issues I was receiving while "bug testing". This time, and I'll start it completely off TTT, and re-do the functions.
+	
+	-	Requirements (Server):
+		->	ULib (Ulysses Library). If you're using the admin mod ULX, you already have ULib. ULib can be downloaded from here: http://ulyssesmod.net
+		->	Server knowledge - You'll have to be able to place the folder inside the gamemodes folder.
+		
+	-	Recommended to have (Server):
+		->	Fast download server, the sub-folder of the gamemode has some files that you should add into the fast download.
+		
+	-	Requirements (Client):
+		->	Garry's Mod (duh).
+	
+	-	Recommended to have (Client):
+		->	Counter-Strike Source. As in TTT, Ghetto Hidden uses CSS textures. Those are needed to get rid of most of the errors (NOT saying it will help for ALL errors).
+	
+	-	Features of Ghetto Hidden:
+		->	Based off TTT gamemode.
+		->	Traitors (now called Hidden) become invisible when the roles are chosen.
+		->	Detectives (now called Hunters) spawn with UMPs. Every non-Hidden becomes Hunters.
+		->	Hidden have no firearms at all. They have to use non-direct damage, except for their knife (and flare gun, I guess).
+	
+	-	Planned additions/changes:
+		->	Modify the knife (change damage, remove throwable/droppable knife, change weapon slot). - Done in V0.0.1.
+		->	Remove direct-damage weapons. - Done in V0.0.1.
+		->	Spawn Hidden with disguiser (enabled). Test version added in V0.0.1.
+		->	Make Hunters spawn with UMPs. - Done in V0.0.1.
+		->	Make Hidden invisible on selection. - Test version added in V0.0.1.
+		->	Make innocents turn into Hunters after selection. - Test version added in V0.0.1.
+		->	Prevention for Hidden having direct-damage weapons (like weapons found on the map). - 50% done in V0.0.2. - 100% done in V0.0.4?
+		->	Add a freeze to Hunters, so they can't instantly start killing Hidden. - Added in V0.0.2.
+		->	Change the names of Detectives/Traitors to actually say Hunters/Hidden. - Mostly done in V0.0.1.
+		->	Figure out how to prevent Hidden to pickup/use weapons other than the Rambo knife in Rambo Mode. - Done? I forgot.
+		->	Make the health bar work properly for Hidden. - Not really a huge issue.
+		->	Finalize Rambo Mode, also create a ConVar for it.
+		->	Change the name of "Hunters" to something else?
+	
+	-	Known bugs:
+		->	Version 0.0.3:
+			-	Roles wouldn't properly update. - Fixed in V0.0.4.
+
+		->	Version 0.0.2:
+			-	Put credit count to -1 in Rambo Mode. - Fixed in V0.0.3.
+			-	Rambo knife primary attack printed lua errors and kicked the user. - Fixed in V0.0.3.
+
+		->	Version 0.0.1:
+			-	Disguise doesn't automatically turn on - Issue: ttt_toggle_disguise is blocked from being called upon client.
+			-	A shadow is shown below the Hidden - I believe it's fixed.
+			-	Forgot to add knife to the Hidden loadout - Fixed.
+	
+	-	Fixed bugs:
+		->	From V0.0.3 to V0.0.4:
+			-	Roles should now update properly.
+
+		->	From V0.0.2 to V0.0.3:
+			-	Fixed the credit count showing -1 in Rambo Mode.
+			-	Fixed Rambo knife doing errors.
+
+		->	From V0.0.1 to V0.0.2:
+			-	Disguise doesn't automatically turn on - Fixed by doing "ttt_set_disguise 1" instead.
+			-	A shadow is shown below the Hidden - Shadow is gone.
+			-	Forgot to add knife to the Hidden loadout - Easy fix.
+	
+	-	Changes/additions:
+		-	Version 0.0.4 - Alpha - October 14th-15th, 2013.
+			-	Role-update fix.
+
+		-	Version 0.0.3 - Alpha - September 11th-October 13th, 2013.
+			-	Credit count error is fixed.
+			-	Rambo knife fixed.
+			-	Rambo knife delay set to 1, normal knife was raised from 1.1 to 1.4.
+			-	Removed the yellow voice chat icon above the head of players. Hidden can now talk without revealing themselves.
+			-	Re-added colors for the me and Boris' name on the scoreboard.
+			-	Added a prevention for Traitors to pickup any weapon (this will probably need modifications). - Temporarily removed.
+			
+		->	Version 0.0.2 - Alpha - September 10th-11th, 2013.
+			-	Disguise now automatically hides your name/identity when you become Hidden (it activates when the round starts).
+			-	Knife now spawns on Hidden.
+			-	Shadow is now gone from below the player.
+			-	Crowbar isn't given until the roles are chosen (this is for the future, so I can replace the crowbar with Duncan's Claw idea for Hidden).
+			-	Function: When the round ends, everyone is made visible again. I also have a similar function to uncloak non-Hidden when the round starts, just in case.
+			-	Function: Modified the function for making innocents into Hunters - Hidden now get their weapons stripped and then given their weapons back. To prevent the Hidden to have firearms. (I still need to replace slot2 with something)
+			-	Function: Partially added the Rambo Mode function, it costs one credit and puts your health to 25 if you already have more than 25. If you have less than 25, your health doesn't change.
+			-	Rambo knife added. Only given when you activate Rambo Mode.
+			-	Rambo knife is a tiny bit faster than normal knife. (Normal knife = 1.1 delay, Rambo knife = 0.8)
+			-	Removed armor from Hidden-shop.
+			-	Hidden health now set to 200.
+			-	Hunters are frozen for 10 seconds when round starts (to prevent instant kills).
+			
+		->	Version 0.0.1 - Alpha - September 9th-10th, 2013.
+			-	Knife changed to 25 damage.
+			-	Knife doesn't drop on death, is not droppable/throwable either.
+			-	Knife changed to 3rd slot.
+			-	Removed AWP, SG, Jihad, C4 and silenced pistol.
+			-	Removed DNA scanner.
+			-	Changed UMP to be slot 9 (originally where the DNA scanner was).
+			-	UMP cannot be dropped.
+			-	UMP spawns with Hunters.
+			-	Hidden spawn with disguise (not enabled as of yet).
+			-	Function: Activates a Hidden's disguise automatically.
+			-	Function: Automatically cloaks hidden.
+			-	Function: Automatically sets Innocents to Hunters.
+			-	Function: Prints a text when I join the server that I joined :P
+			-	Changed the names of Detectives/Traitors to Hunters/Hidden. Some text might still show "detective" or "traitor" because I'm lazy and couldn't be bothered to edit it all.
+			-	Game will print whoever is Hidden to the chat (it's not that useful, but I added it anyways).
+		
+	-	Credits:
+		->	Boris:
+			-	Had the whole idea of creating Ghetto Hidden.
+			-	Started it out in normal TTT, using ULX commands (basically Ghetto-Ghetto Hidden).
+
+		->	Alex/Decicus:
+			-	Modified the gamemode and such.
+		
+		->	Bad King Urgrain:
+			-	Created the original Trouble in Terrorist Town gamemode.
+			-	http://ttt.badking.net
+			
+		->	The Red Duncan:
+			-	Created the icon.
+			-	Created a logo.
+			
+		->	Share:
+			-	Had the idea of Rambo Mode.
+			-	Main idea of the Lifestealer gun.
+			
+		->	Sniper:
+			-	Created a logo.
+	
+	-	Suggestions:
+		->	The Red Duncan:
+			-	"The Claw" - Hidden - http://fadw.net/forums/viewtopic.php?p=9685#p9685 (or suggestion "Duncan_1.txt").
+			-	Poison trap - Hidden - Same as above.
+			-	Pills - Hidden - Same as above.
+			-	The Bright Mark series - Hunter - Same as above.
+	
+		->	Share:
+			-	"Rambo Mode" - Hidden - http://fadw.net/forums/viewtopic.php?f=20&t=1187&p=9714#p9714 (or suggestion "Share_1.txt")
+			
+	-	Other notes:
+		->	Release:
+			I have decided to release Ghetto Hidden to the public, eventually. There is no ETA for the release except for "When I feel like it's ready".
+		
+		-> Functions:
+			My custom functions will be in it's own file called "gh.lua". Although, other modifications may have been done in other files that are TTT-default. And I haven't kept track of which ones I've edited (whoops).
+			This file is located in the <GMod directory>/gamemodes/ghettohidden/gamemode/ folder.
+			Clientside functions are in cl_gh.lua.
