@@ -16,7 +16,9 @@ Ghetto Hidden:
 	
 	-	Recommended to have (Client):
 		->	Counter-Strike Source. As in TTT, Ghetto Hidden uses CSS textures. Those are needed to get rid of most of the errors (NOT saying it will help for ALL errors).
-	
+	-	News:
+		->	November 27th, 2013: All updates, changes and commits after the ones below are moved to BitBuckets own log.
+
 	-	Features of Ghetto Hidden:
 		->	Based off TTT gamemode.
 		->	Traitors (now called Hidden) become invisible when the roles are chosen.

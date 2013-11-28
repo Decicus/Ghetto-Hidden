@@ -97,8 +97,10 @@ function RamboMode()
 							v:GodDisable()
 							v:ChatPrint("God mode is now disabled")
 							end)
+				--What to add here: Something that makes Rambo-Hidden faster.
+				ULib.csay(nil, v:Nick() .. " has activated Rambo Mode!", 100)
 				if v:Health() < 25 then
-					v:ChatPrint("Your health is too low to be set to 25.")
+					v:ChatPrint("Your health is too low to be set to 25. Your health will be the same.")
 				else
 					v:SetHealth(25)
 					v:ChatPrint("Your health has been set to 25.")
