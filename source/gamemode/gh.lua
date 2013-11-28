@@ -6,17 +6,9 @@ I'm just letting you know that there are edits in the other files too, but this 
 The reasons I have so many functions is for easier troubleshooting in the beginning, I'll narrow it down when I've tested all of them.
 --]]
 
---Forces downloads of the icon and such.
+--Forces downloads of the icon and such. Pretty sure this is needed.
 resource.AddFile("gamemodes/ghettohidden/icon24.png")
 resource.AddFile("gamemodes/ghettohidden/logo.png")
-
---Remember to remove this on "official" release.
-function PrintPreventMSG ()
-	if game.GetMap() == "ttt_crummycradle_a4" then
-		ULib.tsay(nil, "You're on ttt_crummycradle_a4. In Ghetto Hidden, CAMPING in the bottom of this map will get you punished. You are warned.", true)
-	end
-end
-hook.Add("TTTBeginRound", "PrintPreventMSG", PrintPreventMSG)
 
 --Main functions that trigger when round starts.
 function HiddenMain()
