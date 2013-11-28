@@ -114,6 +114,8 @@ end
 --concommand.Add("RamboMode", RamboMode)
 
 --Functions below are taken from Bender and Skillz' TTT module for ULX.
+--If you guys actually end up seeing this, you can find me on the ULX forums under the name "Decicus".
+--Contact me if you wish to remove this from my gamemode.
 --[Helper Functions]---------------------------------------------------------------------------
 --[[GetLoadoutWeapons][Returns the loadout weapons ]
 @param  {[Number]} r [The role of the loadout weapons to be returned]
