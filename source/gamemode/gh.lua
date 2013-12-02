@@ -90,6 +90,7 @@ function RamboMode()
 				v:StripAll()
 				v:GodEnable()
 				v:ChatPrint("Rambo Mode is enabled, you have God mode for 5 seconds")
+				v:SubtractCredits(5) -- Lazy way of making sure Rambo-Hidden can't buy stuff. I'll need to do this some other way eventually.
 				timer.Simple(0.05, function()
 							v:Give("weapon_gh_rambo")
 							end)
@@ -98,6 +99,7 @@ function RamboMode()
 							v:ChatPrint("God mode is now disabled")
 							end)
 				--What to add here: Something that makes Rambo-Hidden faster.
+				--I need to override some default TTT functions.
 				ULib.csay(nil, v:Nick() .. " has activated Rambo Mode!", 100)
 				if v:Health() < 25 then
 					v:ChatPrint("Your health is too low to be set to 25. Your health will be the same.")
