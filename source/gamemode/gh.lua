@@ -120,17 +120,37 @@ end
 
 --[Helper Functions for Rambo Mode]------------------------------------------------------------
 
-function RamboModeLeave( ply )
+function CheckRamboCredit()
+	for _, v in ipairs ( player.GetAll() ) do
+		if v:IsRole( ROLE_TRAITOR ) then
+			if v:GetPData( "gh_ramboenabled" ) == true then
+				v:SubtractCredits(1)
+			end
+		end
+	end
+end
+hook.Add( "GHCreditAward", CheckRamboCredit )
+
+function RamboModeDisableDC( ply )
 	if ply:IsRole( ROLE_TRAITOR ) then
 		if ply:GetPData( "gh_ramboenabled" ) == true then
 			ply:SetPData( "gh_ramboenabled", false )
 		end
 	end
 end
-hook.Add( "PlayerDisconnected", RamboModeLeave )
+hook.Add( "PlayerDisconnected", RamboModeDisableDC )
 
-function RamboDisable()
-	for _, v in pairs ( player.GetAll() ) do
+function RamboModeDisableDeath( ply, wep, att )
+	if ply:IsRole( ROLE_TRAITOR ) then
+		if ply:GetPData( "gh_ramboenabled" ) == true then
+			ply:SetPData( "gh_ramboenabled", false )
+		end
+	end
+end
+hook.Add( "PlayerDeath", RamboModeDisableDeath )
+
+function RamboModeDisableRound()
+	for _, v in ipairs ( player.GetAll() ) do
 		if v:IsRole( ROLE_TRAITOR ) then
 			if v:GetPData( "gh_ramboenabled" ) == true then
 				v:SetPData( "gh_ramboenabled", false )
@@ -138,8 +158,8 @@ function RamboDisable()
 		end
 	end
 end
-hook.Add( "TTTBeginRound", RamboDisable )
-hook.Add( "TTTEndRound", RamboDisable )
+hook.Add( "TTTBeginRound", RamboModeDisableRound )
+hook.Add( "TTTEndRound", RamboModeDisableRound )
 
 --[End]----------------------------------------------------------------------------------------
 
