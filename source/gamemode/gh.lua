@@ -87,6 +87,7 @@ function RamboMode()
 			if v:GetCredits() < 1 then
 				v:ChatPrint("You don't have enough credits to activate Rambo Mode.")
 			else
+				v:SetPData("gh_ramboenabled", true) --Bad way of saving it, but I'm not too sure of any other way to do it.
 				v:StripAll()
 				v:GodEnable()
 				v:ChatPrint("Rambo Mode is enabled, you have God mode for 5 seconds")
@@ -117,9 +118,34 @@ function RamboMode()
 end
 --concommand.Add("RamboMode", RamboMode)
 
+--[Helper Functions for Rambo Mode]------------------------------------------------------------
+
+function RamboModeLeave( ply )
+	if ply:IsRole( ROLE_TRAITOR ) then
+		if ply:GetPData( "gh_ramboenabled" ) == true then
+			ply:SetPData( "gh_ramboenabled", false )
+		end
+	end
+end
+hook.Add( "PlayerDisconnected", RamboModeLeave )
+
+function RamboDisable()
+	for _, v in pairs ( player.GetAll() ) do
+		if v:IsRole( ROLE_TRAITOR ) then
+			if v:GetPData( "gh_ramboenabled" ) == true then
+				v:SetPData( "gh_ramboenabled", false )
+			end
+		end
+	end
+end
+hook.Add( "TTTBeginRound", RamboDisable )
+hook.Add( "TTTEndRound", RamboDisable )
+
+--[End]----------------------------------------------------------------------------------------
+
 --Functions below are taken from Bender and Skillz' TTT module for ULX.
 --If you guys actually end up seeing this, you can find me on the ULX forums under the name "Decicus".
---Contact me if you wish to remove this from my gamemode.
+--Contact me if you wish to remove this from the gamemode.
 --[Helper Functions]---------------------------------------------------------------------------
 --[[GetLoadoutWeapons][Returns the loadout weapons ]
 @param  {[Number]} r [The role of the loadout weapons to be returned]
