@@ -546,6 +546,7 @@ local function CheckCreditAward(victim, attacker)
             for _, ply in pairs(player.GetAll()) do
                if ply:IsActiveTraitor() then
                   ply:AddCredits(amt)
+				  hook.Call("GHCreditAward") --Calls a hook whenever someone get's rewarded.
                end
             end
          end
