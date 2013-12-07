@@ -91,7 +91,6 @@ function RamboMode()
 				v:StripAll()
 				v:GodEnable()
 				v:ChatPrint("Rambo Mode is enabled, you have God mode for 5 seconds")
-				v:SubtractCredits(10) -- Lazy way of making sure Rambo-Hidden can't buy stuff. I'll need to do this some other way eventually.
 				timer.Simple(0.05, function()
 							v:Give("weapon_gh_rambo")
 							end)
