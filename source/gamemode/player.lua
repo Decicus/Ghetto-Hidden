@@ -473,7 +473,6 @@ local deathsounds = {
    Sound("vo/npc/Barney/ba_pain06.wav"),
    Sound("vo/npc/Barney/ba_pain07.wav"),
    Sound("vo/npc/Barney/ba_pain09.wav"),
-   --Sound("vo/npc/Barney/ba_ohshit03.wav"), --"heh" was the original comment here. I commented it out so that FADW wouldn't have players saying "Oh shit" when they were dying. (It obviously wasn't coming from the mic, but triggered through player death). -Alex
    Sound("vo/npc/Barney/ba_no01.wav"),
    Sound("vo/npc/male01/no02.wav"),
    Sound("hostage/hpain/hpain1.wav"),
