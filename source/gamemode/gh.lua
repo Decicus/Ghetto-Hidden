@@ -117,26 +117,35 @@ end
 
 --[Helper Functions for Rambo Mode]------------------------------------------------------------
 
+-- Most functions inside this little block are functions to DISABLE Rambo Mode.
+-- All of them should be commented for a developer to understand.
+function RamboInitialSpawnDisable( ply )
+	if ply:GetPData( "gh_ramboenabled" ) == true then
+		ply:SetPData( "gh_ramboenabled", false )
+	end
+end
+hook.Add( "PlayerInitialSpawn", RamboInitialSpawnDisable ) -- Triggers when player loads with "Sending client info..." in case they timed out or something like that.
+
 function CheckRamboCredit()
 	for _, v in ipairs ( player.GetAll() ) do
 		if v:IsRole( ROLE_TRAITOR ) then
-			if v:GetPData( "gh_ramboenabled" ) == true then
-				v:SubtractCredits(1)
-				v:ChatPrint("The credit you just received has been removed.")
+			if v:GetPData( "gh_ramboenabled" ) == true then --Check if Rambo Mode is enabled.
+				v:SubtractCredits(1) -- Removes the credit.
+				v:ChatPrint("The credit you just received has been removed.") -- Prints to the Rambo-Hidden.
 			end
 		end
 	end
 end
-hook.Add( "GHCreditAward", CheckRamboCredit )
+hook.Add( "GHCreditAward", CheckRamboCredit ) -- Line 549, player.lua. Custom hook called when Hidden receive credit.
 
 function RamboModeDisableDC( ply )
 	if ply:IsRole( ROLE_TRAITOR ) then
-		if ply:GetPData( "gh_ramboenabled" ) == true then
-			ply:SetPData( "gh_ramboenabled", false )
+		if ply:GetPData( "gh_ramboenabled" ) == true then -- Checks if Rambo Mode is enabled.
+			ply:SetPData( "gh_ramboenabled", false ) -- Disables it.
 		end
 	end
 end
-hook.Add( "PlayerDisconnected", RamboModeDisableDC )
+hook.Add( "PlayerDisconnected", RamboModeDisableDC ) -- Triggers when player disconnects.
 
 function RamboModeDisableDeath( ply, wep, att )
 	if ply:IsRole( ROLE_TRAITOR ) then
@@ -145,7 +154,7 @@ function RamboModeDisableDeath( ply, wep, att )
 		end
 	end
 end
-hook.Add( "PlayerDeath", RamboModeDisableDeath )
+hook.Add( "PlayerDeath", RamboModeDisableDeath ) -- Triggers when player dies.
 
 function RamboModeDisableRound()
 	for _, v in ipairs ( player.GetAll() ) do
@@ -157,7 +166,7 @@ function RamboModeDisableRound()
 	end
 end
 hook.Add( "TTTBeginRound", RamboModeDisableRound )
-hook.Add( "TTTEndRound", RamboModeDisableRound )
+hook.Add( "TTTEndRound", RamboModeDisableRound ) -- Disables Rambo Mode for everyone on round start and end.
 
 --[End]----------------------------------------------------------------------------------------
 
