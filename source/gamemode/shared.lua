@@ -185,7 +185,9 @@ DefaultEquipment = {
       "weapon_ttt_sipistol",
       "weapon_ttt_teleport",
       "weapon_ttt_decoy",
-      EQUIP_DISGUISE
+      EQUIP_DISGUISE,
+	  EQUIP_ARMOR,
+	  EQUIP_RADAR,
    },
 
    -- detective-buyable by default
