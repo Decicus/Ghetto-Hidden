@@ -81,38 +81,36 @@ hook.Add("TTTEndRound", "NoInvisEnd", NoInvisEnd)
 
 --The most advanced function I'm probably ever going to create.
 --#RamboMode
-function RamboMode()
-	for k, v in ipairs (player.GetAll()) do
-		if v:IsRole(ROLE_TRAITOR) then
-			if v:GetCredits() < 1 then
-				v:ChatPrint("You don't have enough credits to activate Rambo Mode.")
+function RamboMode(ply, cmd, args, str)
+	if ply:IsRole(ROLE_TRAITOR) then
+		if ply:GetCredits() < 1 then
+			ply:ChatPrint("You don't have enough credits to activate Rambo Mode.")
+		else
+			ply:SetPData("gh_ramboenabled", true) --Bad way of saving it, but I'm not too sure of any other way to do it.
+			ply:StripAll()
+			ply:GodEnable()
+			ply:ChatPrint("Rambo Mode is enabled, you have God mode for 5 seconds")
+			timer.Simple(0.05, function()
+						ply:Give("weapon_gh_rambo")
+						end)
+			timer.Simple(5, function()
+						ply:GodDisable()
+						ply:ChatPrint("God mode is now disabled")
+						end)
+			--What to add here: Something that makes Rambo-Hidden faster.
+			--I need to override some default TTT functions.
+			ULib.tsay( nil, ply:Nick() .. " has activated Rambo Mode!", true )
+			if ply:Health() < 25 then
+				ply:ChatPrint("Your health is too low to be set to 25. Your health will be the same.")
 			else
-				v:SetPData("gh_ramboenabled", true) --Bad way of saving it, but I'm not too sure of any other way to do it.
-				v:StripAll()
-				v:GodEnable()
-				v:ChatPrint("Rambo Mode is enabled, you have God mode for 5 seconds")
-				timer.Simple(0.05, function()
-							v:Give("weapon_gh_rambo")
-							end)
-				timer.Simple(5, function()
-							v:GodDisable()
-							v:ChatPrint("God mode is now disabled")
-							end)
-				--What to add here: Something that makes Rambo-Hidden faster.
-				--I need to override some default TTT functions.
-				ULib.csay(nil, v:Nick() .. " has activated Rambo Mode!", 100)
-				if v:Health() < 25 then
-					v:ChatPrint("Your health is too low to be set to 25. Your health will be the same.")
-				else
-					v:SetHealth(25)
-					v:ChatPrint("Your health has been set to 25.")
-				end
+				ply:SetHealth(25)
+				ply:ChatPrint("Your health has been set to 25.")
 			end
-		elseif not v:IsRole(ROLE_TRAITOR) then
-			v:ChatPrint("You're not even a Hidden...")
-		elseif not v:Alive() then
-			v:ChatPrint("You're sort of dead.")
 		end
+	elseif not ply:IsRole(ROLE_TRAITOR) then
+		ply:ChatPrint("You're not even a Hidden...")
+	elseif not ply:Alive() then
+		ply:ChatPrint("You're sort of dead.")
 	end
 end
 --concommand.Add("RamboMode", RamboMode)
@@ -124,6 +122,7 @@ function CheckRamboCredit()
 		if v:IsRole( ROLE_TRAITOR ) then
 			if v:GetPData( "gh_ramboenabled" ) == true then
 				v:SubtractCredits(1)
+				v:ChatPrint("The credit you just received has been removed.")
 			end
 		end
 	end
