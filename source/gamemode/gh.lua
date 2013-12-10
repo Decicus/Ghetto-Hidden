@@ -113,7 +113,7 @@ function RamboMode(ply, cmd, args)
 		ply:ChatPrint("You're sort of dead.")
 	end
 end
---concommand.Add("RamboMode", RamboMode)
+concommand.Add("gh_rambo", RamboMode, "Activates Rambo Mode (Hidden-only).")
 
 --[Helper Functions for Rambo Mode]------------------------------------------------------------
 
