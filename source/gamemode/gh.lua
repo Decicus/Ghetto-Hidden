@@ -81,7 +81,7 @@ hook.Add("TTTEndRound", "NoInvisEnd", NoInvisEnd)
 
 --The most advanced function I'm probably ever going to create.
 --#RamboMode
-function RamboMode(ply, cmd, args, str)
+function RamboMode(ply, cmd, args)
 	if ply:IsRole(ROLE_TRAITOR) then
 		if ply:GetCredits() < 1 then
 			ply:ChatPrint("You don't have enough credits to activate Rambo Mode.")
