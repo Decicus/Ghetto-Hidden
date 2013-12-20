@@ -666,7 +666,7 @@ function GM:PlayerDeath( victim, infl, attacker)
    SendUserMessage("plydied", victim)
 
    if HasteMode() and GetRoundState() == ROUND_ACTIVE then
-      IncRoundEnd(GetConVar("ttt_haste_minutes_per_death"):GetFloat() * 60)
+      IncRoundEnd(GetConVar("ttt_haste_minutes_per_death"):GetFloat() * 120)
    end
 end
 
