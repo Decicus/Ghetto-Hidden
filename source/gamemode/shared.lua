@@ -166,6 +166,8 @@ function GM:PlayerFootstep(ply, pos, foot, sound, volume, rf)
    if IsValid(ply) and (ply:Crouching() or ply:GetMaxSpeed() < 150) then
       -- do not play anything, just prevent normal sounds from playing
       return true
+   elseif ply:IsRole(ROLE_TRAITOR) then
+      return true
    end
 end
 
