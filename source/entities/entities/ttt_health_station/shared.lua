@@ -27,7 +27,7 @@ ENT.Model = Model("models/props/cs_office/microwave.mdl")
 --ENT.CanUseKey = true
 ENT.CanHavePrints = true
 ENT.MaxHeal = 25
-ENT.MaxStored = 200
+ENT.MaxStored = 30
 ENT.RechargeRate = 1
 ENT.RechargeFreq = 2 -- in seconds
 
@@ -68,7 +68,7 @@ function ENT:Initialize()
 
    self:SetColor(Color(180, 180, 250, 255))
 
-   self:SetStoredHealth(200)
+   self:SetStoredHealth(30)
 
    self:SetPlacer(nil)
 
