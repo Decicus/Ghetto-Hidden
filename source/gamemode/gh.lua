@@ -15,7 +15,7 @@ function HiddenMain()
 	for k, v in ipairs (player.GetAll()) do --Gets all the players
 		if v:IsRole (ROLE_TRAITOR) then --Checks if Traitor/Hidden
 			v:ConCommand("ttt_set_disguise 1") --Activates disguise
-			v:SetHealth(200) --Sets health to 200.
+			v:SetHealth(150) --Sets health to 150.
 			ULib.tsayColor(nil, Color(255, 0, 0), v:Nick(), Color(255, 255, 255), " has become one of the Hidden!") --Says who is a Hidden.
 			ULib.invisible(v, true)
 		else
@@ -27,16 +27,18 @@ hook.Add("TTTBeginRound", "HiddenMain", HiddenMain)
 
 --Freezes Hunters.
 function FreezeHunters()
+	ULib.tsayColor(nil, true, Color(25, 25, 200), "Hunters ", Color(255, 255, 255), "are frozen and immune to damage for 10 seconds.")
+	timer.Simple(10, function()
+				ULib.tsayColor(nil, wait, Color(25, 25, 200), "Hunters ", Color(255, 255, 255), "are now unfrozen and can take damage.")
+				end)
 	for k, v in ipairs (player.GetAll()) do
 		if not v:IsRole(ROLE_TRAITOR) then
 			v:Freeze(true)
 			v:GodEnable()
-			ULib.tsayColor(nil, true, Color(25, 25, 200), "Hunters ", Color(255, 255, 255), "are frozen and immune to damage for 10 seconds.")
 			v:ChatPrint("You're frozen and cannot move for 10 seconds, be patient.")
 			timer.Simple(10, function()
 						v:Freeze(false)
 						v:GodDisable()
-						ULib.tsayColor(nil, wait, Color(25, 25, 200), "Hunters ", Color(255, 255, 255), "are now unfrozen and can take damage.")
 						v:ChatPrint("You can now move. Go out and hunt some Hidden.")
 						end)
 		end
