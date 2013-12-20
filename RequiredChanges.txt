@@ -1,0 +1,11 @@
+-> Second slot weapon
+-> Voice icon fix
+-> P90 scope fix/removal
+-> Disable Hidden footstep. - Done?
+-> Add more ammo to poltergeist.
+-> Remove HP station??
+-> Remove quickchat.
+-> More Hidden weapons (store)
+-> Add more delay to the knife.
+-> Add more time to rounds.
+-> Smell.
