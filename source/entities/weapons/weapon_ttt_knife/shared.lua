@@ -29,11 +29,11 @@ SWEP.ViewModel          = "models/weapons/cstrike/c_knife_t.mdl"
 SWEP.WorldModel         = "models/weapons/w_knife_t.mdl"
 
 SWEP.DrawCrosshair      = false
-SWEP.Primary.Damage         = 25
+SWEP.Primary.Damage         = 15
 SWEP.Primary.ClipSize       = -1
 SWEP.Primary.DefaultClip    = -1
 SWEP.Primary.Automatic      = true
-SWEP.Primary.Delay = 1.4
+SWEP.Primary.Delay = 1.8
 SWEP.Primary.Ammo       = "none"
 SWEP.Secondary.ClipSize     = -1
 SWEP.Secondary.DefaultClip  = -1
@@ -124,7 +124,7 @@ function SWEP:StabKill(tr, spos, sdest)
    local target = tr.Entity
 
    local dmg = DamageInfo()
-   dmg:SetDamage(2000)
+   dmg:SetDamage(15)
    dmg:SetAttacker(self.Owner)
    dmg:SetInflictor(self.Weapon or self)
    dmg:SetDamageForce(self.Owner:GetAimVector())

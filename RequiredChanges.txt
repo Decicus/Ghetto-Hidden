@@ -6,6 +6,6 @@
 -> Remove HP station?? - Done, nerfed to max. 30 health inside.
 -> Remove quickchat.
 -> More Hidden weapons (store)
--> Add more delay to the knife.
--> Add more time to rounds.
+-> Add more delay to the knife. - Yep.
+-> Add more time to rounds. - Yus.
 -> Smell.
