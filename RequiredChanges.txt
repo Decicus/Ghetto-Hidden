@@ -2,7 +2,7 @@
 -> Voice icon fix
 -> P90 scope fix/removal - Added the scope file to fast dl to see if it fixed it.
 -> Disable Hidden footstep. - Done?
--> Add more ammo to poltergeist.
+-> Add more ammo to poltergeist. - Done
 -> Remove HP station?? - Done, nerfed to max. 30 health inside.
 -> Remove quickchat.
 -> More Hidden weapons (store)
