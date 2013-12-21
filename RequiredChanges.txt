@@ -1,5 +1,5 @@
 -> Second slot weapon
--> Voice icon fix
+-> Voice icon fix - Test to see if it's fixed.
 -> P90 scope fix/removal - Added the scope file to fast dl to see if it fixed it.
 -> Disable Hidden footstep. - Done?
 -> Add more ammo to poltergeist. - Done
