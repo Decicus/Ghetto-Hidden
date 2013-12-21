@@ -24,9 +24,9 @@ SWEP.Base = "weapon_tttbase"
 SWEP.Primary.Recoil	= 0.1
 SWEP.Primary.Delay = 12.0
 SWEP.Primary.Cone = 0.02
-SWEP.Primary.ClipSize = 6
-SWEP.Primary.DefaultClip = 6
-SWEP.Primary.ClipMax = 6
+SWEP.Primary.ClipSize = 8
+SWEP.Primary.DefaultClip = 8
+SWEP.Primary.ClipMax = 8
 SWEP.Primary.Ammo = "Gravity"
 SWEP.Primary.Automatic = false
 
