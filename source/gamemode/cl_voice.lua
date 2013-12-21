@@ -422,8 +422,8 @@ local function VoiceNotifyThink(pnl)
    if not (ValidPanel(pnl) and LocalPlayer() and IsValid(pnl.Player)) then return end
 
    local d = LocalPlayer():GetPos():Distance(pnl.Player:GetPos())
-
-   pnl:SetAlpha(math.max(-0.1 * d + 255, 15))
+   pnl:SetAlpha( 0 )
+   --pnl:SetAlpha(math.max(-0.1 * d + 255, 15))
 end
 
 local PlayerVoicePanels = {}
