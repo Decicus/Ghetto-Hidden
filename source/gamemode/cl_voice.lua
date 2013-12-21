@@ -645,8 +645,7 @@ function VOICE.CanSpeak()
    return LocalPlayer().voice_battery > battery_min or IsTraitorChatting(LocalPlayer())
 end
 
---Speaker is commented out so people can voice chat without revealing themselves.
---local speaker = surface.GetTextureID("voice/icntlk_sv")
+local speaker = surface.GetTextureID("voice/icntlk_sv")
 function VOICE.Draw(client)
    local b = client.voice_battery
    if b >= battery_max then return end
@@ -663,7 +662,7 @@ function VOICE.Draw(client)
    end
    surface.DrawOutlinedRect(x, y, w, h)
 
-   --surface.SetTexture(speaker)
+   surface.SetTexture(speaker)
    surface.DrawTexturedRect(5, 5, 16, 16)
 
    x = x + 1
