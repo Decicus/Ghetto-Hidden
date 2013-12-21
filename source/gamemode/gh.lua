@@ -141,29 +141,23 @@ end
 hook.Add( "GHCreditAward", CheckRamboCredit ) -- Line 549, player.lua. Custom hook called when Hidden receive credit.
 
 function RamboModeDisableDC( ply )
-	if ply:IsRole( ROLE_TRAITOR ) then
-		if ply:GetPData( "gh_ramboenabled" ) == true then -- Checks if Rambo Mode is enabled.
-			ply:SetPData( "gh_ramboenabled", false ) -- Disables it.
-		end
+	if ply:GetPData( "gh_ramboenabled" ) == true then -- Checks if Rambo Mode is enabled.
+		ply:SetPData( "gh_ramboenabled", false ) -- Disables it.
 	end
 end
 hook.Add( "PlayerDisconnected", RamboModeDisableDC ) -- Triggers when player disconnects.
 
 function RamboModeDisableDeath( ply, wep, att )
-	if ply:IsRole( ROLE_TRAITOR ) then
-		if ply:GetPData( "gh_ramboenabled" ) == true then
-			ply:SetPData( "gh_ramboenabled", false )
-		end
+	if ply:GetPData( "gh_ramboenabled" ) == true then
+		ply:SetPData( "gh_ramboenabled", false )
 	end
 end
 hook.Add( "PlayerDeath", RamboModeDisableDeath ) -- Triggers when player dies.
 
 function RamboModeDisableRound()
 	for _, v in ipairs ( player.GetAll() ) do
-		if v:IsRole( ROLE_TRAITOR ) then
-			if v:GetPData( "gh_ramboenabled" ) == true then
-				v:SetPData( "gh_ramboenabled", false )
-			end
+		if v:GetPData( "gh_ramboenabled" ) == true then
+			v:SetPData( "gh_ramboenabled", false )
 		end
 	end
 end
