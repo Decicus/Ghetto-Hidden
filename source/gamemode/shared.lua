@@ -2,7 +2,7 @@ GM.Name = "Ghetto Hidden"
 GM.Author = "Alex 'Decicus' Thomassen"
 GM.Email = "decicus@gmail.com"
 GM.Website = "http://decicus.com"
-GM.Version = "0.1"
+GM.Version = "0.5"
 
 
 GM.Customized = false
