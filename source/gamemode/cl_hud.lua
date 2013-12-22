@@ -345,10 +345,16 @@ end
 -- Hide the standard HUD stuff
 local hud = {"CHudHealth", "CHudBattery", "CHudAmmo", "CHudSecondaryAmmo"}
 function GM:HUDShouldDraw(name)
+	if name == "CHudHealth" or "CHudBattery", "CHudAmmo", "CHudSecondaryAmmo" then
+		return false
+	elseif name == "CHudVoiceStatus" then
+		return true
+	end
+--[[
    for k, v in pairs(hud) do
       if name == v then return false end
    end
-
+--]]
    return true
 end
 
