@@ -161,8 +161,8 @@ L.quick_help    = "Help!"
 L.quick_imwith  = "I'm with {player}."
 L.quick_see     = "I see {player}."
 L.quick_suspect = "{player} acts suspicious."
-L.quick_traitor = "{player} is a Traitor!"
-L.quick_inno    = "{player} is innocent."
+L.quick_traitor = "{player} is a Hidden!"
+L.quick_inno    = "{player} is being derpy."
 L.quick_check   = "Anyone still alive?"
 
 -- {player} in the quickchat text normally becomes a player nickname, but can
@@ -591,7 +591,7 @@ L.corpse_hint  = "Press {usekey} to search. {walkkey} + {usekey} to search cover
 L.target_disg  = " (DISGUISED)"
 L.target_unid  = "Unidentified body"
 
-L.target_traitor = "FELLOW TRAITOR"
+L.target_traitor = "FELLOW HIDDEN"
 L.target_detective = "DETECTIVE"
 
 L.target_credits = "Search to receive unspent credits"
@@ -623,14 +623,13 @@ L.spec_help    = "Click to spectate players, or press {usekey} on a physics obje
 
 -- These are spread over multiple lines, hence the square brackets instead of
 -- quotes. That's a Lua thing. Every line break (enter) will show up in-game.
-L.info_popup_innocent = [[You are an innocent Terrorist! But there are traitors around...
-Who can you trust, and who is out to fill you with bullets?
+L.info_popup_innocent = [[You are a Hunter! But there are Hidden around...
 
 Watch your back and work with your comrades to get out of this alive!]]
 
 L.info_popup_detective = [[You are a Hunter! Terrorist HQ has given you special resources to find the Hidden.
-Use them to help the innocent survive, but be careful:
-the traitors will be looking to take you down first!
+Use them to help the other Hunters survive, but be careful:
+the Hidden will be looking to take you down first!
 
 Press {menukey} to receive your equipment!]]
 
@@ -671,59 +670,59 @@ L.tips_panel_tip   = "Tip:"
 
 -- Tip texts
 
-L.tip1 = "Traitors can search a corpse silently, without confirming the death, by holding {walkkey} and pressing {usekey} on the corpse."
+L.tip1 = "Hidden can search a corpse silently, without confirming the death, by holding {walkkey} and pressing {usekey} on the corpse."
 
 L.tip2 = "Arming a C4 explosive with a longer timer will increase the number of wires that cause it to explode instantly when an innocent attempts to disarm it. It will also beep softer and less often."
 
-L.tip3 = "Detectives can search a corpse to find who is 'reflected in its eyes'. This is the last person the dead guy saw. That does not have to be the killer if he was shot in the back."
+L.tip3 = "Hunters can search a corpse to find who is 'reflected in its eyes'. This is the last person the dead guy saw. That does not have to be the killer if he was shot in the back."
 
 L.tip4 = "No one will know you have died until they find your dead body and identify you by searching it."
 
-L.tip5 = "When a Traitor kills a Detective, he instantly receives a credit reward."
+L.tip5 = "When a Hidden kills a Hunter, he instantly receives a credit reward."
 
-L.tip6 = "When a Traitor dies, all Detectives are rewarded equipment credits."
+L.tip6 = "When a Hidden dies, all Hunters are rewarded equipment credits."
 
-L.tip7 = "When the Traitors have made significant progress in killing innocents, they will receive an equipment credit as reward."
+L.tip7 = "When the Hidden have made significant progress in killing innocents, they will receive an equipment credit as reward."
 
-L.tip8 = "Traitors and Detectives can collect unspent equipment credits from the dead bodies of other Traitors and Detectives."
+L.tip8 = "Hidden and Hunters can collect unspent equipment credits from the dead bodies of other Hidden and Hunters."
 
 L.tip9 = "The Poltergeist can turn any physics object into a deadly projectile. Each punch is accompanied by a blast of energy hurting anyone nearby."
 
-L.tip10 = "As Traitor or Detective, keep an eye on red messages in the top right. These will be important for you."
+L.tip10 = "As Hidden or Hunter, keep an eye on red messages in the top right. These will be important for you."
 
-L.tip11 = "As Traitor or Detective, keep in mind you are rewarded extra equipment credits if you and your comrades perform well. Make sure you remember to spend them!"
+L.tip11 = "As Hidden or Hunter, keep in mind you are rewarded extra equipment credits if you and your comrades perform well. Make sure you remember to spend them!"
 
-L.tip12 = "The Detectives' DNA Scanner can be used to gather DNA samples from weapons and items and then scan to find the location of the player who used them. Useful when you can get a sample from a corpse or a disarmed C4!"
+L.tip12 = "The Hunters' DNA Scanner can be used to gather DNA samples from weapons and items and then scan to find the location of the player who used them. Useful when you can get a sample from a corpse or a disarmed C4!"
 
-L.tip13 = "When you are close to someone you kill, some of your DNA is left on the corpse. This DNA can be used with a Detective's DNA Scanner to find your current location. Better hide the body after you knife someone!"
+L.tip13 = "When you are close to someone you kill, some of your DNA is left on the corpse. This DNA can be used with a Hunter's DNA Scanner to find your current location. Better hide the body after you knife someone!"
 
 L.tip14 = "The further you are away from someone you kill, the faster your DNA sample on their body will decay."
 
-L.tip15 = "Are you Traitor and going sniping? Consider trying out the Disguiser. If you miss a shot, run away to a safe spot, disable the Disguiser, and no one will know it was you who was shooting at them."
+L.tip15 = "Are you Hidden and going sniping? Consider trying out the Disguiser. If you miss a shot, run away to a safe spot, disable the Disguiser, and no one will know it was you who was shooting at them."
 
-L.tip16 = "As Traitor, the Teleporter can help you escape when chased, and allows you to quickly travel across a big map. Make sure you always have a safe position marked."
+L.tip16 = "As Hidden, the Teleporter can help you escape when chased, and allows you to quickly travel across a big map. Make sure you always have a safe position marked."
 
 L.tip17 = "Are the innocents all grouped up and hard to pick off? Consider trying out the Radio to play sounds of C4 or a firefight to lead some of them away."
 
-L.tip18 = "Using the Radio as Traitor, you can play sounds through your Equipment Menu after the radio has been placed. Queue up multiple sounds by clicking multiple buttons in the order you want them."
+L.tip18 = "Using the Radio as Hidden, you can play sounds through your Equipment Menu after the radio has been placed. Queue up multiple sounds by clicking multiple buttons in the order you want them."
 
-L.tip19 = "As Detective, if you have leftover credits you could give a trusted Innocent a Defuser. Then you can spend your time doing the serious investigative work and leave the risky bomb defusal to them."
+L.tip19 = "As Hunter, if you have leftover credits you could give a trusted Innocent a Defuser. Then you can spend your time doing the serious investigative work and leave the risky bomb defusal to them."
 
-L.tip20 = "The Detectives' Binoculars allow long-range searching and identifying of corpses. Bad news if the Traitors were hoping to use a corpse as bait. Of course, while using the Binoculars a Detective is unarmed and distracted..."
+L.tip20 = "The Hunters' Binoculars allow long-range searching and identifying of corpses. Bad news if the Hidden were hoping to use a corpse as bait. Of course, while using the Binoculars a Hunter is unarmed and distracted..."
 
-L.tip21 =  "The Detectives' Health Station lets wounded players recover. Of course, those wounded people could be Traitors..."
+L.tip21 =  "The Hunters' Health Station lets wounded players recover. Of course, those wounded people could be Hidden..."
 
-L.tip22 = "The Health Station records a DNA sample of everyone who uses it. Detectives can use this with the DNA Scanner to find out who has been healing up."
+L.tip22 = "The Health Station records a DNA sample of everyone who uses it. Hunters can use this with the DNA Scanner to find out who has been healing up."
 
-L.tip23 = "Unlike weapons and C4, the Radio equipment for Traitors does not contain a DNA sample of the person who planted it. Don't worry about Detectives finding it and blowing your cover."
+L.tip23 = "Unlike weapons and C4, the Radio equipment for Hidden does not contain a DNA sample of the person who planted it. Don't worry about Hunters finding it and blowing your cover."
 
 L.tip24 = "Press {helpkey} to view a short tutorial or modify some TTT-specific settings. For example, you can permanently disable these tips there."
 
-L.tip25 = "When a Detective searches a body, the result is available to all players via the scoreboard by clicking on the name of the dead person."
+L.tip25 = "When a Hunter searches a body, the result is available to all players via the scoreboard by clicking on the name of the dead person."
 
-L.tip26 = "In the scoreboard, a magnifying glass icon next to someone's name indicates you have search information about that person. If the icon is bright, the data comes from a Detective and may contain additional information."
+L.tip26 = "In the scoreboard, a magnifying glass icon next to someone's name indicates you have search information about that person. If the icon is bright, the data comes from a Hunter and may contain additional information."
 
-L.tip27 = "As Detective, corpses with a magnifying glass after the nickname have been searched by a Detective and their results are available to all players via the scoreboard."
+L.tip27 = "As Hunter, corpses with a magnifying glass after the nickname have been searched by a Hunter and their results are available to all players via the scoreboard."
 
 L.tip28 = "Spectators can press {mutekey} to cycle through muting other spectators or living players."
 
@@ -739,7 +738,7 @@ L.tip33 = "Firing through the ironsights of a weapon will slightly increase your
 
 L.tip34 = "Smoke grenades are effective indoors, especially for creating confusion in crowded rooms."
 
-L.tip35 = "As Traitor, remember you can carry dead bodies and hide them from the prying eyes of the innocent and their Detectives."
+L.tip35 = "As Hidden, remember you can carry dead bodies and hide them from the prying eyes of the innocent and their Hunters."
 
 L.tip36 = "The tutorial available under {helpkey} contains an overview of the most important keys of the game."
 
@@ -749,7 +748,7 @@ L.tip38 = "Many of the placeable equipment items (such as C4, Radio) can be stuc
 
 L.tip39 = "C4 that explodes due to a mistake in disarming it has a smaller explosion than C4 that reaches zero on its timer."
 
-L.tip40 = "If it says 'HASTE MODE' above the round timer, the round will at first be only a few minutes long, but with every death the available time increases (like capturing a point in TF2). This mode puts the pressure on the traitors to keep things moving."
+L.tip40 = "If it says 'HASTE MODE' above the round timer, the round will at first be only a few minutes long, but with every death the available time increases (like capturing a point in TF2). This mode puts the pressure on the Hidden to keep things moving."
 
 
 --- Round report
