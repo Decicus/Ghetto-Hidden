@@ -21,3 +21,7 @@ It's pretty much in Alpha.
 	ULib can be downloaded from [http://ulyssesmod.net](http://ulyssesmod.net)  
 * Counter-Strike: Source  
 	Like TTT, Counter-Strike: Source textures are used. They are needed here too.  
+
+#Contact information:#
+If you wish to contact me, feel free to send an e-mail to <decicus@gmail.com>.  
+Or alternatively on Steam by adding me as a friend on the [Steam Community](https://steamcommunity.com/id/FADWAlex "Steam Community - Alex/Decicus").  
