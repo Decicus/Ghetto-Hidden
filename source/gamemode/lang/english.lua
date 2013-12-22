@@ -353,7 +353,7 @@ L.c4_status_disarmed = "DISARMED"
 
 -- Visualizer
 L.vis_name        = "Visualizer"
-L.vis_hint        = "Press {usekey} to pick up (Detectives only)."
+L.vis_hint        = "Press {usekey} to pick up (Hunters only)."
 
 L.vis_help_pri    = "{primaryfire} drops the activated device."
 
