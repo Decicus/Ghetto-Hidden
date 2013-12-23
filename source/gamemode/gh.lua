@@ -166,6 +166,39 @@ hook.Add( "TTTEndRound", RamboModeDisableRound ) -- Disables Rambo Mode for ever
 
 --[End]----------------------------------------------------------------------------------------
 
+--Random Sounds--------------------------------------------------------------------------------
+--[Start]--------------------------------------------------------------------------------------
+
+-- Force download of sounds:
+resource.AddFile( "sound/gh/smell.wav" ) -- "I can smell you." - Gassy Mexican.
+-- End force-download list.
+
+local GHSounds = {
+	"gh/smell.wav",
+}
+
+local function GHSoundCheck()
+	local calc = math.random( 1, 100000 ) -- Plays it randomly in the round
+	local soundPlay = table.Random( GHSounds )
+	if calc == 5792 then -- If the random calculation ends up on 5792. It's just a random number I chose.
+		for k, v in ipairs( player.GetAll() ) do -- Get every player.
+			v:SendLua(surface.PlaySound( soundPlay )) -- Make them trigger a random sound in the table.
+		end
+	end
+end
+
+function GHSoundThinkAdd()
+	hook.Add( "Think", "GHSoundCheck", GHSoundCheck )
+end
+hook.Add( "TTTBeginRound", GHSoundThinkAdd ) --Starts the Think hook at the begin of a round.
+
+function GHSoundThinkRemove()
+	hook.Remove( "Think", "GHSoundCheck" )
+end
+hook.Add( "TTTEndRound", GHSoundThinkRemove ) -- Removes it at the end of a round.
+
+--[End]----------------------------------------------------------------------------------------
+
 --Functions below are taken from Bender and Skillz' TTT module for ULX.
 --If you guys actually end up seeing this, you can find me on the ULX forums under the name "Decicus".
 --Contact me if you wish to remove this from the gamemode.
