@@ -133,7 +133,7 @@ local timer = timer
 
 ---- Round mechanics
 function GM:Initialize()
-   MsgN("Trouble In Terrorist Town gamemode initializing...")
+   MsgN("Ghetto Hidden gamemode initializing...")
    ShowVersion()
 
    -- Force friendly fire to be enabled. If it is off, we do not get lag compensation.
@@ -176,7 +176,7 @@ function GM:Initialize()
    WaitForPlayers()
 
    if cvars.Number("sv_alltalk", 0) > 0 then
-      ErrorNoHalt("TTT WARNING: sv_alltalk is enabled. Dead players will be able to talk to living players. TTT will now attempt to set sv_alltalk 0.\n")
+      ErrorNoHalt("GH WARNING: sv_alltalk is enabled. Dead players will be able to talk to living players. GH will now attempt to set sv_alltalk 0.\n")
       RunConsoleCommand("sv_alltalk", "0")
    end
 
@@ -185,7 +185,7 @@ function GM:Initialize()
       if g.folder == 'cstrike' then cstrike = true end
    end
    if not cstrike then
-      ErrorNoHalt("TTT WARNING: CS:S does not appear to be mounted by GMod. Things may break in strange ways. Server admin? Check the TTT readme for help.\n")
+      ErrorNoHalt("GH WARNING: CS:S does not appear to be mounted by GMod. Things may break in strange ways. Server admin? Check the GH readme for help.\n")
    end
 
    GAMEMODE:CheckFileConsistency()
