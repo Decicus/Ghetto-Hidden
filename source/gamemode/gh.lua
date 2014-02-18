@@ -18,8 +18,10 @@ function HiddenMain()
 			v:SetHealth(150) --Sets health to 150.
 			ULib.tsayColor(nil, Color(255, 0, 0), v:Nick(), Color(255, 255, 255), " has become one of the Hidden!") --Says who is a Hidden.
 			ULib.invisible(v, true)
+			v:AllowFlashlight( false )
 		else
 			ULib.invisible(v, false)
+			v:AllowFlashlight( true )
 		end
 	end
 end
@@ -76,6 +78,7 @@ function NoInvisEnd(r)
 	if WIN_TRAITOR or WIN_TIMELIMIT or WIN_INNOCENT then
 		for k, v in ipairs (player.GetAll()) do
 			ULib.invisible(v, false)
+			v:AllowFlashlight( true )
 		end
 	end
 end
@@ -182,7 +185,7 @@ local function GHSoundCheck()
 	local soundPlay = table.Random( GHSounds )
 	if calc == 5792 then -- If the random calculation ends up on 5792. It's just a random number I chose.
 		for k, v in ipairs( player.GetAll() ) do -- Get every player.
-			v:SendLua(surface.PlaySound( soundPlay )) -- Make them trigger a random sound in the table.
+			v:SendLua( surface.PlaySound( soundPlay ) ) -- Make them trigger a random sound in the table.
 		end
 	end
 end
