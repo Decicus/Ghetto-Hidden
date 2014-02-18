@@ -91,7 +91,7 @@ function RamboMode(ply, cmd, args)
 		if ply:GetCredits() < 1 then
 			ply:ChatPrint("You don't have enough credits to activate Rambo Mode.")
 		else
-			ply:SetPData("gh_ramboenabled", true) --Bad way of saving it, but I'm not too sure of any other way to do it.
+			ply:GHRamboEnabled( true ) --Bad way of saving it, but I'm not too sure of any other way to do it.
 			ply:StripAll()
 			ply:GodEnable()
 			ply:ChatPrint("Rambo Mode is enabled, you have God mode for 5 seconds")
@@ -124,9 +124,18 @@ concommand.Add("gh_rambo", RamboMode, "Activates Rambo Mode (Hidden-only).")
 
 -- Most functions inside this little block are functions to DISABLE Rambo Mode.
 -- All of them should be commented for a developer to understand.
+
+local function GHRamboEnabled( bool ) -- I'm not even sure if this is needed, but I did it anyways.
+	if bool then
+		return true
+	else
+		return false
+	end
+end
+
 function RamboInitialSpawnDisable( ply )
-	if ply:GetPData( "gh_ramboenabled" ) == true then
-		ply:SetPData( "gh_ramboenabled", false )
+	if ply:GHRamboEnabled then
+		ply:GHRamboEnabled( false )
 	end
 end
 hook.Add( "PlayerInitialSpawn", RamboInitialSpawnDisable ) -- Triggers when player loads with "Sending client info..." in case they timed out or something like that.
@@ -144,23 +153,23 @@ end
 hook.Add( "GHCreditAward", CheckRamboCredit ) -- Line 549, player.lua. Custom hook called when Hidden receive credit.
 
 function RamboModeDisableDC( ply )
-	if ply:GetPData( "gh_ramboenabled" ) == true then -- Checks if Rambo Mode is enabled.
-		ply:SetPData( "gh_ramboenabled", false ) -- Disables it.
+	if ply:GHRamboEnabled then -- Checks if Rambo Mode is enabled.
+		ply:GHRamboEnabled( false ) -- Disables it.
 	end
 end
 hook.Add( "PlayerDisconnected", RamboModeDisableDC ) -- Triggers when player disconnects.
 
 function RamboModeDisableDeath( ply, wep, att )
-	if ply:GetPData( "gh_ramboenabled" ) == true then
-		ply:SetPData( "gh_ramboenabled", false )
+	if ply:GHRamboEnabled then
+		ply:GHRamboEnabled( false )
 	end
 end
 hook.Add( "PlayerDeath", RamboModeDisableDeath ) -- Triggers when player dies.
 
 function RamboModeDisableRound()
 	for _, v in ipairs ( player.GetAll() ) do
-		if v:GetPData( "gh_ramboenabled" ) == true then
-			v:SetPData( "gh_ramboenabled", false )
+		if v:GHRamboEnabled then
+			v:GHRamboEnabled( false )
 		end
 	end
 end
