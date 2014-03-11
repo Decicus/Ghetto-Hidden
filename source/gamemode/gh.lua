@@ -91,7 +91,7 @@ function RamboMode(ply, cmd, args)
 		if ply:GetCredits() < 1 then
 			ply:ChatPrint("You don't have enough credits to activate Rambo Mode.")
 		else
-			ply.GHRamboEnabled = true --Bad way of saving it, but I'm not too sure of any other way to do it.
+			ply.GHRamboEnabled = true -- To be honest, I don't even know what I'm doing.
 			ply:StripAll()
 			ply:GodEnable()
 			ply:ChatPrint("Rambo Mode is enabled, you have God mode for 5 seconds")
