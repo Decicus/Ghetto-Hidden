@@ -135,7 +135,7 @@ hook.Add( "PlayerInitialSpawn", RamboInitialSpawnDisable ) -- Triggers when play
 function CheckRamboCredit()
 	for _, v in ipairs ( player.GetAll() ) do
 		if v:IsRole( ROLE_TRAITOR ) then
-			if v:GetPData( "gh_ramboenabled" ) == true then --Check if Rambo Mode is enabled.
+			if v.GHRamboEnabled then --Check if Rambo Mode is enabled.
 				v:SubtractCredits(1) -- Removes the credit.
 				v:ChatPrint("The credit you just received has been removed.") -- Prints to the Rambo-Hidden.
 			end
