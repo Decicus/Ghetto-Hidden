@@ -179,6 +179,11 @@ function GM:Initialize()
       ErrorNoHalt("GH WARNING: sv_alltalk is enabled. Dead players will be able to talk to living players. GH will now attempt to set sv_alltalk 0.\n")
       RunConsoleCommand("sv_alltalk", "0")
    end
+   
+   if cvars.Number("mp_show_voice_icons", 0) > 0 then -- Custom Ghetto Hidden convar edit.
+	  ErrorNoHalt("GH WARNING: mp_show_voice_icons is enabled. Voice icons will show above everyone's head while they talk. GH will now attempt to set mp_show_voice_icons 0.\n")
+	  RunConsoleCommand("mp_show_voice_icons", "0")
+   end
 
    local cstrike = false
    for _, g in pairs(engine.GetGames()) do
