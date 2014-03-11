@@ -25,3 +25,7 @@ It's pretty much in Alpha.
 #Contact information:#
 If you wish to contact me, feel free to send an e-mail to <decicus@gmail.com>.  
 Or alternatively on Steam by adding me as a friend on the [Steam Community](https://steamcommunity.com/id/FADWAlex "Steam Community - Alex/Decicus").  
+  
+#Server owners:#
+If you really want to host this, any server convars you'd like to edit can be found on [TTT's Config Settins page](http://ttt.badking.net/config-and-commands/convars).  
+At the time of writing this (March 11th, 2014), the convars haven't been modified to reflect upon the Ghetto Hidden "mark".
