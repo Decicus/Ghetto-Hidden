@@ -146,60 +146,27 @@ hook.Add( "GHCreditAward", CheckRamboCredit ) -- Line 549, player.lua. Custom ho
 
 function RamboModeDisableDC( ply )
 	if ply.GHRamboEnabled then -- Checks if Rambo Mode is enabled.
-		ply.GHRamboEnabled( false ) -- Disables it.
+		ply.GHRamboEnabled = false -- Disables it.
 	end
 end
 hook.Add( "PlayerDisconnected", RamboModeDisableDC ) -- Triggers when player disconnects.
 
 function RamboModeDisableDeath( ply, wep, att )
 	if ply.GHRamboEnabled then
-		ply.GHRamboEnabled( false )
+		ply.GHRamboEnabled = false
 	end
 end
 hook.Add( "PlayerDeath", RamboModeDisableDeath ) -- Triggers when player dies.
 
 function RamboModeDisableRound()
 	for _, v in ipairs ( player.GetAll() ) do
-		if v:GHRamboEnabled then
-			v:GHRamboEnabled( false )
+		if v.GHRamboEnabled then
+			v.GHRamboEnabled = false
 		end
 	end
 end
 hook.Add( "TTTBeginRound", RamboModeDisableRound )
 hook.Add( "TTTEndRound", RamboModeDisableRound ) -- Disables Rambo Mode for everyone on round start and end.
-
---[End]----------------------------------------------------------------------------------------
-
---Random Sounds--------------------------------------------------------------------------------
---[Start]--------------------------------------------------------------------------------------
-
--- Force download of sounds:
-resource.AddFile( "sound/gh/smell.wav" ) -- "I can smell you." - Gassy Mexican.
--- End force-download list.
-
-local GHSounds = {
-	"gh/smell.wav",
-}
-
-local function GHSoundCheck()
-	local calc = math.random( 1, 100000 ) -- Plays it randomly in the round
-	local soundPlay = table.Random( GHSounds )
-	if calc == 5792 then -- If the random calculation ends up on 5792. It's just a random number I chose.
-		for k, v in ipairs( player.GetAll() ) do -- Get every player.
-			v:SendLua( surface.PlaySound( soundPlay ) ) -- Make them trigger a random sound in the table.
-		end
-	end
-end
-
-function GHSoundThinkAdd()
-	hook.Add( "Think", "GHSoundCheck", GHSoundCheck )
-end
-hook.Add( "TTTBeginRound", GHSoundThinkAdd ) --Starts the Think hook at the begin of a round.
-
-function GHSoundThinkRemove()
-	hook.Remove( "Think", "GHSoundCheck" )
-end
-hook.Add( "TTTEndRound", GHSoundThinkRemove ) -- Removes it at the end of a round.
 
 --[End]----------------------------------------------------------------------------------------
 
