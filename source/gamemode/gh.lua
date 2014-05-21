@@ -1,174 +1,182 @@
 --[[
------	Ghetto Hidden: Functions	-----
-This whole Lua file contains all the custom functions I've added into Ghetto Hidden.
-AT LEAST one of them uses a ULib function (invisible/cloak) so you will need that for it to work. (ULib.tsayColor is also used)
-I'm just letting you know that there are edits in the other files too, but this contains the functions I have ADDED (not modified).
-The reasons I have so many functions is for easier troubleshooting in the beginning, I'll narrow it down when I've tested all of them.
+	-----	Ghetto Hidden: Functions	-----
+	This whole Lua file contains all the custom functions I've added into Ghetto Hidden.
+	AT LEAST one of them uses a ULib function (invisible/cloak) so you will need that for it to work. (ULib.tsayColor is also used)
+	
+	This file contains shared functions.
 --]]
 
---Forces downloads of the icon and such. Pretty sure this is needed.
-resource.AddFile("gamemodes/ghettohidden/icon24.png")
-resource.AddFile("gamemodes/ghettohidden/logo.png")
+resource.AddFile( "gamemodes/ghettohidden/icon24.png" )
+resource.AddFile( "gamemodes/ghettohidden/logo.png" )
 
---Main functions that trigger when round starts.
-function HiddenMain()
-	for k, v in ipairs (player.GetAll()) do --Gets all the players
-		if v:IsRole (ROLE_TRAITOR) then --Checks if Traitor/Hidden
-			v:ConCommand("ttt_set_disguise 1") --Activates disguise
-			v:SetHealth(150) --Sets health to 150.
-			ULib.tsayColor(nil, Color(255, 0, 0), v:Nick(), Color(255, 255, 255), " has become one of the Hidden!") --Says who is a Hidden.
-			ULib.invisible(v, true)
-			v:AllowFlashlight( false )
+function GHMainStart()
+
+	for _, ply in ipairs( player.GetAll() ) do
+	
+		if ply:IsRole( ROLE_TRAITOR ) then
+		
+			ply:ConCommand( "ttt_set_disguise 1" )
+			ply:SetHealth( 150 )
+			ULib.tsayColor( nil, Color( 255, 0, 0 ), ply:Nick(), Color( 255, 255, 255 ), " has been selected as a Hidden!" )
+			ULib.invisible( ply, true )
+			ply:AllowFlashlight( false ) -- Remove the ability to reveal yourself because of Flashlight.
+			ply:StripWeapons()
+			
+			timer.Simple( 0.5, function()
+			
+				GiveLoadoutItems( ply )
+				GiveLoadoutWeapons( ply )
+			
+			end )
+			
 		else
-			ULib.invisible(v, false)
-			v:AllowFlashlight( true )
-		end
-	end
-end
-hook.Add("TTTBeginRound", "HiddenMain", HiddenMain)
+		
+			ply:SetRole( ROLE_DETECTIVE )
+			ply:SetCredits( 2 )
+			
+			timer.Simple( 0.5, function()
+			
+				GiveLoadoutItems( ply )
+				GiveLoadoutWeapons( ply )
+			
+			end )
+			
+			ULib.invisible( ply, false )
+			ply:AllowFlashlight( true )
+			ULib.tsayColor( nil, Color( 25, 25, 200 ), "Hunters ", Color( 255, 255, 255 ), " are frozen and invincible for 10 seconds." )
+			ply:Freeze( true )
+			ply:GodEnable()
+			ply:ChatPrint( "You're frozen and invincible for 10 seconds, be patient." )
+			timer.Simple( 10, function()
 
---Freezes Hunters.
-function FreezeHunters()
-	ULib.tsayColor(nil, true, Color(25, 25, 200), "Hunters ", Color(255, 255, 255), "are frozen and immune to damage for 10 seconds.")
-	timer.Simple(10, function()
-				ULib.tsayColor(nil, wait, Color(25, 25, 200), "Hunters ", Color(255, 255, 255), "are now unfrozen and can take damage.")
-				end)
-	for k, v in ipairs (player.GetAll()) do
-		if not v:IsRole(ROLE_TRAITOR) then
-			v:Freeze(true)
-			v:GodEnable()
-			v:ChatPrint("You're frozen and cannot move for 10 seconds, be patient.")
-			timer.Simple(10, function()
-						v:Freeze(false)
-						v:GodDisable()
-						v:ChatPrint("You can now move. Go out and hunt some Hidden.")
-						end)
+				ply:Freeze( false )
+				ply:GodDisable()
+				ply:ChatPrint( "You are unfrozen and able to take damage. Go out and hunt some Hidden. Be careful." )
+				ULib.tsayColor( nil, Color( 25, 25, 200 ), "Hunters ", Color( 255, 255, 255 ), "are now unfrozen and can take damage." )
+			
+			end )
+		
 		end
+		
+		timer.Simple( 1.5, function()
+		
+			SendFullStateUpdate()
+		
+		end )
+		
 	end
+	
 end
-hook.Add("TTTBeginRound", "FreezeHunters", FreezeHunters)
+hook.Add( "TTTBeginRound", "GHMainStart", GHMainStart )
 
---Forces innocents to become Hunters.
-function InnocentsHunter()
-	for k, v in ipairs (player.GetAll()) do
-		if v:IsRole(ROLE_INNOCENT) then
-			v:SetRole(ROLE_DETECTIVE)
-			v:SetCredits(2)
-			timer.Simple(1, function()
-						GiveLoadoutItems(v)
-						GiveLoadoutWeapons(v)
-						end)
-		elseif v:IsRole(ROLE_TRAITOR) then
-			v:StripWeapons()
-			--Timer to give weapons
-			timer.Simple(1, function()
-					GiveLoadoutItems(v)
-					GiveLoadoutWeapons(v)
-					end)
-		end
-		timer.Simple(1.5, function()
-					SendFullStateUpdate()
-					end)
+function GHMainEnd( r )
+
+	for _, ply in ipairs( player.GetAll() ) do
+	
+		ULib.invisible( ply, false )
+		ply:AllowFlashlight( true )
+	
 	end
-end
-hook.Add("TTTBeginRound", "InnocentsHunter", InnocentsHunter)
 
---Just makes everyone visible.
-function NoInvisEnd(r)
-	if WIN_TRAITOR or WIN_TIMELIMIT or WIN_INNOCENT then
-		for k, v in ipairs (player.GetAll()) do
-			ULib.invisible(v, false)
-			v:AllowFlashlight( true )
-		end
-	end
 end
-hook.Add("TTTEndRound", "NoInvisEnd", NoInvisEnd)
+hook.Add( "TTTEndRound", "GHMainEnd", GHMainEnd )
 
---The most advanced function I'm probably ever going to create.
---#RamboMode
-function RamboMode(ply, cmd, args)
-	if ply:IsRole(ROLE_TRAITOR) then
+function GHRamboMode( ply, cmd, args )
+
+	if ply:IsRole( ROLE_TRAITOR ) then
+	
 		if ply:GetCredits() < 1 then
-			ply:ChatPrint("You don't have enough credits to activate Rambo Mode.")
+		
+			ply:ChatPrint( "You need at least 1 credit to activate Rambo Mode." )
+			
 		else
-			ply.GHRamboEnabled = true -- To be honest, I don't even know what I'm doing.
+		
+			ply.GHRamboMode = true
 			ply:StripAll()
 			ply:GodEnable()
-			ply:ChatPrint("Rambo Mode is enabled, you have God mode for 5 seconds")
-			timer.Simple(0.05, function()
-						ply:Give("weapon_gh_rambo")
-						end)
-			timer.Simple(5, function()
-						ply:GodDisable()
-						ply:ChatPrint("God mode is now disabled")
-						end)
-			--What to add here: Something that makes Rambo-Hidden faster.
-			--I need to override some default TTT functions.
-			ULib.tsay( nil, ply:Nick() .. " has activated Rambo Mode!", true )
+			ply:ChatPrint( "Rambo Mode is enabled. You will be invincible for 5 seconds." )
+			ULib.tsay( nil, ply:Nick() .. " has activated Rambo Mode!" )
+			
 			if ply:Health() < 25 then
-				ply:ChatPrint("Your health is too low to be set to 25. Your health will be the same.")
+			
+				ply:ChatPrint( "Your health is below 25. Your health will stay the same." )
+				
+			elseif ply:Health() == 25 then
+			
+				ply:ChatPrint( "Your health is exactly 25. Your health will stay the same." )
+				
 			else
-				ply:SetHealth(25)
-				ply:ChatPrint("Your health has been set to 25.")
+			
+				ply:ChatPrint( "Your health has been set to 25." )
+				ply:SetHealth( 25 )
+			
 			end
+			
+			timer.Simple( 0.1, function()
+			
+				ply:Give( "weapon_gh_rambo" )
+			
+			end )
+			
+			timer.Simple( 5, function()
+			
+				ply:GodDisable()
+				ply:ChatPrint( "Your God mode has been disabled. You will be able to take damage, so be careful." )
+			
+			end )
+		
 		end
-	elseif not ply:IsRole(ROLE_TRAITOR) then
-		ply:ChatPrint("You're not even a Hidden...")
+		
+	elseif not ply:IsRole( ROLE_TRAITOR ) then
+		
+		ply:ChatPrint( "You're not a Hidden." )
+	
 	elseif not ply:Alive() then
-		ply:ChatPrint("You're sort of dead.")
+	
+		ply:ChatPrint( "You're not alive." )
+		
+	else
+	
+		ply:ChatPrint( "You cannot be in Rambo Mode." )
+	
 	end
+
 end
-concommand.Add("gh_rambo", RamboMode, "Activates Rambo Mode (Hidden-only).")
+concommand.Add( "gh_rambo", GHRamboMode, "Activates Rambo Mode for Hidden." )
 
---[Helper Functions for Rambo Mode]------------------------------------------------------------
+function GHPlayerSpeed( ply, slowed )
 
--- Most functions inside this little block are functions to DISABLE Rambo Mode.
--- All of them should be commented for a developer to understand.
-
-function RamboInitialSpawnDisable( ply )
-	if ply.GHRamboEnabled then
-		ply.GHRamboEnabled( false )
+	if ply.GHRamboMode then
+	
+		return 1.5
+		
+	else
+	
+		return 1
+		
 	end
-end
-hook.Add( "PlayerInitialSpawn", RamboInitialSpawnDisable ) -- Triggers when player loads with "Sending client info..." in case they timed out or something like that.
 
-function CheckRamboCredit()
-	for _, v in ipairs ( player.GetAll() ) do
-		if v:IsRole( ROLE_TRAITOR ) then
-			if v.GHRamboEnabled then --Check if Rambo Mode is enabled.
-				v:SubtractCredits(1) -- Removes the credit.
-				v:ChatPrint("The credit you just received has been removed.") -- Prints to the Rambo-Hidden.
-			end
-		end
+end
+hook.Add( "TTTPlayerSpeed", "GHPlayerSpeed", GHPlayerSpeed )
+
+
+function GHCheckCredit( ply )
+
+	if ply.GHRamboMode then
+		
+		ply:SubtractCredits( 1 )
+		ply:ChatPrint( "The credit you just received has been removed due to Rambo Mode." )
+	
 	end
-end
-hook.Add( "GHCreditAward", CheckRamboCredit ) -- Line 549, player.lua. Custom hook called when Hidden receive credit.
 
-function RamboModeDisableDC( ply )
-	if ply.GHRamboEnabled then -- Checks if Rambo Mode is enabled.
-		ply.GHRamboEnabled = false -- Disables it.
-	end
 end
-hook.Add( "PlayerDisconnected", RamboModeDisableDC ) -- Triggers when player disconnects.
+hook.Add( "GHCreditAward", "GHCheckCredit", GHCheckCredit ) -- Line 549, player.lua. Custom hook called when Hidden receive credit.
+--[[
 
-function RamboModeDisableDeath( ply, wep, att )
-	if ply.GHRamboEnabled then
-		ply.GHRamboEnabled = false
-	end
-end
-hook.Add( "PlayerDeath", RamboModeDisableDeath ) -- Triggers when player dies.
+	"GHCreditAward" documentation. Parameters - Player ply.
+	Hook will always be called when a TRAITOR/HIDDEN gets credited. No need to check if ply == ROLE_TRAITOR.
 
-function RamboModeDisableRound()
-	for _, v in ipairs ( player.GetAll() ) do
-		if v.GHRamboEnabled then
-			v.GHRamboEnabled = false
-		end
-	end
-end
-hook.Add( "TTTBeginRound", RamboModeDisableRound )
-hook.Add( "TTTEndRound", RamboModeDisableRound ) -- Disables Rambo Mode for everyone on round start and end.
-
---[End]----------------------------------------------------------------------------------------
+--]]
 
 --Functions below are taken from Bender and Skillz' TTT module for ULX.
 --If you guys actually end up seeing this, you can find me on the ULX forums under the name "Decicus".
