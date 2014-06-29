@@ -44,6 +44,7 @@ include("shared.lua")
 
 --Ghetto Hidden
 include("gh.lua")
+include( "sv_gh.lua" )
 AddCSLuaFile("gh.lua")
 AddCSLuaFile("cl_gh.lua")
 
