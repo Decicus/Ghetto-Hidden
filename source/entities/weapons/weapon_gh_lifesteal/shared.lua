@@ -23,7 +23,7 @@ SWEP.Base = "weapon_tttbase"
 SWEP.Spawnable = false
 SWEP.AdminSpawnable = true
 
-SWEP.WeaponID = 
+SWEP.WeaponID = AMMO_LIFESTEAL
 SWEP.Kind = WEAPON_EQUIP1
 SWEP.Primary.Ammo = "AirboatGun"
 SWEP.Primary.Damage = 20
