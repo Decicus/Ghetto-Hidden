@@ -1,4 +1,3 @@
-
 ---- VGUI panel version of the scoreboard, based on TEAM GARRY's sandbox mode
 ---- scoreboard.
 
@@ -23,7 +22,7 @@ surface.CreateFont("treb_small", {font = "Trebuchet18",
                                   size = 14,
                                   weight = 700})
 
-local logo = surface.GetTextureID("VGUI/ttt/score_logo")
+local logo = surface.GetTextureID("vgui/ttt/score_logo")
 
 local PANEL = {}
 
@@ -121,22 +120,31 @@ function PANEL:Init()
 
    -- the various score column headers
    self.cols = {}
-   self.cols[1] = vgui.Create( "DLabel", self )
-   self.cols[1]:SetText( GetTranslation("sb_ping") )
-
-   self.cols[2] = vgui.Create( "DLabel", self )
-   self.cols[2]:SetText( GetTranslation("sb_deaths") )
-
-   self.cols[3] = vgui.Create( "DLabel", self )
-   self.cols[3]:SetText( GetTranslation("sb_score") )
+   self:AddColumn( GetTranslation("sb_ping") )
+   self:AddColumn( GetTranslation("sb_deaths") )
+   self:AddColumn( GetTranslation("sb_score") )
 
    if KARMA.IsEnabled() then
-      self.cols[4] = vgui.Create("DLabel", self)
-      self.cols[4]:SetText(GetTranslation("sb_karma"))
+      self:AddColumn( GetTranslation("sb_karma") )
    end
+
+   -- Let hooks add their column headers (via AddColumn())
+   hook.Call( "TTTScoreboardColumns", nil, self )
 
    self:UpdateScoreboard()
    self:StartUpdateTimer()
+end
+
+-- For headings only the label parameter is relevant, func is included for
+-- parity with sb_row
+function PANEL:AddColumn( label, func, width )
+   local lbl = vgui.Create( "DLabel", self )
+   lbl:SetText( label )
+   lbl.IsHeading = true
+   lbl.Width = width or 50 -- Retain compatibility with existing code
+
+   table.insert( self.cols, lbl )
+   return lbl
 end
 
 function PANEL:StartUpdateTimer()
@@ -233,9 +241,11 @@ function PANEL:PerformLayout()
 
    -- score columns
    local cy = y_logo_off + 90
+   local cx = w - 8 -(scrolling and 16 or 0)
    for k,v in ipairs(self.cols) do
       v:SizeToContents()
-      v:SetPos( w - (50*k) - v:GetWide()/2 - 8, cy)
+      cx = cx - v.Width
+      v:SetPos(cx - v:GetWide()/2, cy)
    end
 end
 
@@ -327,4 +337,3 @@ function PANEL:PerformLayout()
    self.pnlCanvas:SetSize( self:GetWide() - (self.scroll.Enabled and 16 or 0), self.pnlCanvas:GetTall() )
 end
 vgui.Register( "TTTPlayerFrame", PANEL, "Panel" )
-

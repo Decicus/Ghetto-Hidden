@@ -1,4 +1,3 @@
-
 ---- Unlike sandbox, we have teams to deal with, so here's an extra panel in the
 ---- hierarchy that handles a set of player rows belonging to its team.
 
@@ -30,7 +29,7 @@ function PANEL:Init()
    self.rowcount = 0
 
    self.rows_sorted = {}
-   
+
    self.group = "spec"
 end
 
@@ -51,7 +50,7 @@ function PANEL:Paint()
    local txt = self.name .. " (" .. self.rowcount .. ")"
    local w, h = surface.GetTextSize(txt)
    draw.RoundedBox(8, 0, 0, w + 24, 20, self.color)
-   
+
    -- Shadow
    surface.SetTextPos(11, 11 - h/2)
    surface.SetTextColor(0,0,0, 200)
@@ -69,14 +68,27 @@ function PANEL:Paint()
          surface.SetDrawColor(75,75,75, 100)
          surface.DrawRect(0, y, self:GetWide(), row:GetTall())
       end
-      
+
       y = y + row:GetTall() + 1
    end
 
    -- Column darkening
+   local scr = sboard_panel.ply_frame.scroll.Enabled and 16 or 0
    surface.SetDrawColor(0,0,0, 80)
-   surface.DrawRect(self:GetWide() - 175, 0, 50, self:GetTall())
-   surface.DrawRect(self:GetWide() - 75, 0, 50, self:GetTall())
+   if sboard_panel.cols then
+      local cx = self:GetWide() - scr
+      for k,v in ipairs(sboard_panel.cols) do
+         cx = cx - v.Width
+         if k % 2 == 1 then -- Draw for odd numbered columns
+            surface.DrawRect(cx-v.Width/2, 0, v.Width, self:GetTall())
+         end
+      end
+   else
+      -- If columns are not setup yet, fall back to darkening the areas for the
+      -- default columns
+      surface.DrawRect(self:GetWide() - 175 - 25 - scr, 0, 50, self:GetTall())
+      surface.DrawRect(self:GetWide() - 75 - 25 - scr, 0, 50, self:GetTall())
+   end
 end
 
 function PANEL:AddPlayerRow(ply)
