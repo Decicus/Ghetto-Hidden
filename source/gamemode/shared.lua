@@ -1,11 +1,11 @@
 GM.Name = "Ghetto Hidden"
 GM.Author = "Alex 'Decicus' Thomassen"
 GM.Email = "decicus@gmail.com"
-GM.Website = "http://decicus.com"
+GM.Website = "http://thomassen.xyz/"
 GM.Version = "0.5"
 
 
-GM.Customized = false
+GM.Customized = true
 
 -- Round status consts
 ROUND_WAIT   = 1
