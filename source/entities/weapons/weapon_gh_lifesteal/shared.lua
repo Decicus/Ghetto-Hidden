@@ -12,7 +12,7 @@ if CLIENT then
 	
 	SWEP.Icon = "VGUI/ttt/icon_flare" -- Need icon for it.
 	SWEP.EquipmentData = {
-		type = "Weapon"
+		type = "Weapon",
 		desc = "Lifesteal weapon. Takes 20 health from the target on hit and gives it to you unless the target has less than 20 health."
 	}
 
