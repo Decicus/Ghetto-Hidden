@@ -10,7 +10,7 @@ if CLIENT then
 	SWEP.PrintName = "Lifestealer"
 	SWEP.Slot = 6
 	
-	-- SWEP.Icon = ICON_NAME -- Need icon for it.
+	SWEP.Icon = "VGUI/ttt/icon_flare" -- Need icon for it.
 	SWEP.EquipmentData = {
 		type = "Weapon"
 		desc = "Lifesteal weapon. Takes 20 health from the target on hit and gives it to you unless the target has less than 20 health."
@@ -23,6 +23,7 @@ SWEP.Base = "weapon_tttbase"
 SWEP.Spawnable = false
 SWEP.AdminSpawnable = true
 
+SWEP.WeaponID = 
 SWEP.Kind = WEAPON_EQUIP1
 SWEP.Primary.Ammo = "AirboatGun"
 SWEP.Primary.Damage = 20
@@ -31,12 +32,14 @@ SWEP.Primary.Cone = 0.01
 SWEP.Primary.ClipSize = 5
 SWEP.Primary.ClipMax = 5
 SWEP.Primary.DefaultClip = 5
-SWEP.Primary.Automatic = true
+SWEP.Primary.Automatic = false
 SWEP.AutoSpawnable = false
 
 SWEP.UseHands			= true
 SWEP.ViewModelFlip		= false
 SWEP.ViewModelFOV		= 54
+SWEP.ViewModel	= Model( "models/weapons/c_357.mdl" )
+SWEP.WorldModel	= Model( "models/weapons/w_357.mdl" )
 
 SWEP.CanBuy = { ROLE_TRAITOR }
 SWEP.InLoadoutFor = nil
