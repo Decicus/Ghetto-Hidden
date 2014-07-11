@@ -194,7 +194,6 @@ function SWEP:StabKill(tr, spos, sdest)
    --self:Remove()
 end
 
-
 function SWEP:Equip()
    self.Weapon:SetNextPrimaryFire( CurTime() + (self.Primary.Delay * 1.5) )
    self.Weapon:SetNextSecondaryFire( CurTime() + (self.Secondary.Delay * 1.5) )
