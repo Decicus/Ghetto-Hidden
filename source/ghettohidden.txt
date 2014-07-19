@@ -2,11 +2,5 @@
 {
 	"base"		"base"
 	"title"		"Ghetto Hidden"
-	"maps"		"^ttt_"
 	"menusystem"	"1"
-
-	"settings"
-	{
-		// TODO: put some settings here
-	}
 }

@@ -6,9 +6,6 @@
 	This file contains shared functions.
 --]]
 
-resource.AddFile( "gamemodes/ghettohidden/icon24.png" )
-resource.AddFile( "gamemodes/ghettohidden/logo.png" )
-
 function GHMainStart()
 
 	for _, ply in ipairs( player.GetAll() ) do
@@ -83,7 +80,12 @@ function GHRamboMode( ply, cmd, args )
 			ply:StripAll()
 			ply:GodEnable()
 			ply:ChatPrint( "Rambo Mode is enabled. You will be invincible for 5 seconds." )
-			ULib.tsay( nil, ply:Nick() .. " has activated Rambo Mode!" )
+			
+			for _, p in ipairs( player.GetAll() ) do
+			
+				p:ChatPrint( ply:Nick() .. " has activated Rambo Mode!" )
+				
+			end
 			
 			if ply:Health() <= 25 then
 			
