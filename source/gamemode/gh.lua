@@ -22,24 +22,10 @@ function GHMainStart()
 			ply:AllowFlashlight( false ) -- Remove the ability to reveal yourself because of Flashlight.
 			ply:StripWeapons()
 			
-			timer.Simple( 0.5, function()
-			
-				GiveLoadoutItems( ply )
-				GiveLoadoutWeapons( ply )
-			
-			end )
-			
 		else
 		
 			ply:SetRole( ROLE_DETECTIVE )
 			ply:SetCredits( 2 )
-			
-			timer.Simple( 0.5, function()
-			
-				GiveLoadoutItems( ply )
-				GiveLoadoutWeapons( ply )
-			
-			end )
 			
 			ULib.invisible( ply, false )
 			ply:AllowFlashlight( true )
@@ -58,10 +44,12 @@ function GHMainStart()
 		
 		end
 		
-		timer.Simple( 1.5, function()
-		
+		timer.Simple( 0.5, function()
+			
+			GiveLoadoutItems( ply )
+			GiveLoadoutWeapons( ply )
 			SendFullStateUpdate()
-		
+			
 		end )
 		
 	end
