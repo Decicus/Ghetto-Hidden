@@ -97,13 +97,9 @@ function GHRamboMode( ply, cmd, args )
 			ply:ChatPrint( "Rambo Mode is enabled. You will be invincible for 5 seconds." )
 			ULib.tsay( nil, ply:Nick() .. " has activated Rambo Mode!" )
 			
-			if ply:Health() < 25 then
+			if ply:Health() <= 25 then
 			
-				ply:ChatPrint( "Your health is below 25. Your health will stay the same." )
-				
-			elseif ply:Health() == 25 then
-			
-				ply:ChatPrint( "Your health is exactly 25. Your health will stay the same." )
+				ply:ChatPrint( "Your health is below or at 25. Your health will stay the same." )
 				
 			else
 			
