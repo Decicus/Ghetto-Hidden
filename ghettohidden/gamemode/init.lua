@@ -43,10 +43,11 @@ include("resources.lua")
 include("shared.lua")
 
 --Ghetto Hidden
-include("gh.lua")
+include( "gh.lua" )
 include( "sv_gh.lua" )
-AddCSLuaFile("gh.lua")
-AddCSLuaFile("cl_gh.lua")
+AddCSLuaFile( "gh.lua" )
+AddCSLuaFile( "cl_gh.lua" )
+include( "gh_downloads.lua" )
 
 include("karma.lua")
 include("entity.lua")

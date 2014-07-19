@@ -47,7 +47,6 @@ SWEP.DeploySpeed = 2
 
 function SWEP:PrimaryAttack()
    self.Weapon:SetNextPrimaryFire( CurTime() + self.Primary.Delay )
-   self.Weapon:SetNextSecondaryFire( CurTime() + self.Secondary.Delay )
 
    if not IsValid(self.Owner) then return end
 
@@ -258,7 +257,6 @@ end
 ]]
 function SWEP:Equip()
    self.Weapon:SetNextPrimaryFire( CurTime() + (self.Primary.Delay * 1.5) )
-   self.Weapon:SetNextSecondaryFire( CurTime() + (self.Secondary.Delay * 1.5) )
 end
 
 function SWEP:PreDrop()
