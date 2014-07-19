@@ -58,7 +58,7 @@ function SWEP:PrimaryAttack()
 	local tr = self.Owner:GetEyeTrace().Entity
 	local ply = self.Owner
 	
-	if IsValid( tr ) and tr:IsPlayer() or tr:IsBot() then
+	if IsValid( tr ) and tr:IsPlayer() then
 	
 		if tr:Health() >= 20 then
 		
